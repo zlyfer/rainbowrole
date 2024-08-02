@@ -22,7 +22,7 @@ client.on("ready", () => {
 
   changeColor();
 
-  console.log(`Bot ready.`);
+  console.log(`Bot is ready.`);
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
