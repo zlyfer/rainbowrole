@@ -108,10 +108,6 @@ function currentTime() {
 /* ---------- Bot Shutdown ---------- */
 
 const handleShutdown = async () => {
-  Object.values(guilds).forEach((guild) => {
-    guild.leaveVoice();
-  });
-
   console.info("Logging out and shutting down...");
   await client.destroy();
   process.exit(0);
