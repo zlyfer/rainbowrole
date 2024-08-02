@@ -23,7 +23,7 @@ client.on("ready", () => {
 
   changeColor();
 
-  console.log(`[${currentTime()}] Bot ready.`);
+  console.log(`Bot ready.`);
 });
 
 /* ------- Function ------- */
@@ -106,10 +106,25 @@ function currentTime() {
   return `${hours}:${minutes}:${seconds}`;
 }
 
-/* --------- Misc --------- */
+/* ---------- Bot Shutdown ---------- */
+
+const handleShutdown = async () => {
+  Object.values(guilds).forEach((guild) => {
+    guild.leaveVoice();
+  });
+
+  console.info("Logging out and shutting down...");
+  await client.destroy();
+  process.exit(0);
+};
+
+process.on("SIGINT", handleShutdown);
+process.on("SIGTERM", handleShutdown);
 
 process.on("unhandledRejection", (err) => {
-  console.warn("UNHANDLED: " + err);
+  console.error("UNHANDLED: " + err);
 });
+
+/* ----------- Bot Startup ---------- */
 
 client.login(token);
